@@ -33,7 +33,11 @@ RUN apt-get install -y apktool autoconf automake axel clang cmake expat gawk lib
       python-is-python3
 
 # Installing usable developing packages
-RUN apt-get install -y sudo 
+RUN apt-get install -y sudo micro fish bat eza
+RUN ln -s /usr/bin/batcat /usr/bin/bat
+RUN curl --create-dirs -L -o /tmp/fd/fd.deb -O -L https://github.com/sharkdp/fd/releases/download/v10.2.0/fd_10.2.0_amd64.deb && \
+      apt install -y /tmp/fd/fd.deb && \
+      rm -r /tmp/fd
 
 # Cleaning up the cached packages
 RUN apt-get autoclean

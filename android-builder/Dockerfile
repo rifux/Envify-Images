@@ -61,9 +61,9 @@ RUN mv /tmp/platformTools/platform-tools/lib64/libc++.so /usr/lib64/libc++.so &&
 RUN mv /tmp/platformTools/platform-tools/* /usr/bin/ && \
       rm -r /tmp/platformTools
 
-# Installing 
-RUN curl --create-dirs -L -o /tmp/payloadDumper/payload-dumper-go.tar.gz -O -L https://github.com/ssut/payload-dumper-go/releases/download/1.2.2/payload-dumper-go_1.2.2_linux_amd64.tar.gz
-RUN tar xf /tmp/payloadDumper/payload-dumper-go.tar.gz -C /tmp/payloadDumper
-RUN chmod a+rx /tmp/payloadDumper/payload-dumper-go
-RUN mv /tmp/payloadDumper/payload-dumper-go /usr/bin/payload-dumper-go
-RUN rm -r /tmp/payloadDumper
+# Installing payload-dumper-go
+RUN curl --create-dirs -L -o /tmp/payloadDumper/payload-dumper-go.tar.gz -O -L https://github.com/ssut/payload-dumper-go/releases/download/1.2.2/payload-dumper-go_1.2.2_linux_amd64.tar.gz && \
+      tar xf /tmp/payloadDumper/payload-dumper-go.tar.gz -C /tmp/payloadDumper && \
+      chmod a+rx /tmp/payloadDumper/payload-dumper-go && \
+      mv /tmp/payloadDumper/payload-dumper-go /usr/bin/payload-dumper-go && \
+      rm -r /tmp/payloadDumper

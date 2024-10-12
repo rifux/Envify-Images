@@ -22,7 +22,7 @@ RUN apt-get update && \
 # Installing building dependencies
 RUN apt-get install -y wget bc bison build-essential ccache curl flex g++ g++-multilib \
       gcc gcc-multilib git git-lfs gnupg gperf imagemagick lib32readline-dev lib32z1-dev \
-      libelf-dev liblz4-tool libsdl1.2-dev libssl-dev libxml2 libxml2-utils lzop \
+      libelf-dev libsdl1.2-dev libssl-dev libxml2 libxml2-utils lz4 lzop \
       pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev
 
 # Installing additional building dependencies

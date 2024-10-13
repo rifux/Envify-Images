@@ -30,7 +30,7 @@ RUN apt-get install -y apktool autoconf automake axel clang cmake expat gawk lib
       libcap-dev libexpat1-dev libgmp-dev ^liblz4-.* ^liblzma.* libmpc-dev libmpfr-dev \
       libtool ^lzma.* maven ncftp ncurses-dev patch patchelf pkg-config pngquant re2c \
       subversion texinfo unzip w3m lzip libxml-simple-perl libswitch-perl apt-utils \
-      python-is-python3
+      python-is-python3 erofs-utils erofsfuse
 
 # Installing usable developing packages
 RUN apt-get install -y sudo micro fish bat eza

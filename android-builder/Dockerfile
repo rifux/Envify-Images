@@ -22,7 +22,7 @@ RUN apt-get update && \
 # Installing building dependencies
 RUN apt-get install -y wget bc bison build-essential ccache curl flex g++ g++-multilib \
       gcc gcc-multilib git git-lfs gnupg gperf imagemagick lib32readline-dev lib32z1-dev \
-      libelf-dev liblz4-tool libsdl1.2-dev libssl-dev libxml2 libxml2-utils lzop \
+      libelf-dev libsdl1.2-dev libssl-dev libxml2 libxml2-utils lz4 lzop \
       pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev
 
 # Installing additional building dependencies
@@ -30,10 +30,14 @@ RUN apt-get install -y apktool autoconf automake axel clang cmake expat gawk lib
       libcap-dev libexpat1-dev libgmp-dev ^liblz4-.* ^liblzma.* libmpc-dev libmpfr-dev \
       libtool ^lzma.* maven ncftp ncurses-dev patch patchelf pkg-config pngquant re2c \
       subversion texinfo unzip w3m lzip libxml-simple-perl libswitch-perl apt-utils \
-      python-is-python3
+      python-is-python3 erofs-utils erofsfuse
 
 # Installing usable developing packages
-RUN apt-get install -y sudo 
+RUN apt-get install -y sudo micro fish bat eza
+RUN ln -s /usr/bin/batcat /usr/bin/bat
+RUN curl --create-dirs -L -o /tmp/fd/fd.deb -O -L https://github.com/sharkdp/fd/releases/download/v10.2.0/fd_10.2.0_amd64.deb && \
+      apt install -y /tmp/fd/fd.deb && \
+      rm -r /tmp/fd
 
 # Cleaning up the cached packages
 RUN apt-get autoclean
@@ -56,3 +60,10 @@ RUN mv /tmp/platformTools/platform-tools/lib64/libc++.so /usr/lib64/libc++.so &&
       rmdir /tmp/platformTools/platform-tools/lib64
 RUN mv /tmp/platformTools/platform-tools/* /usr/bin/ && \
       rm -r /tmp/platformTools
+
+# Installing payload-dumper-go
+RUN curl --create-dirs -L -o /tmp/payloadDumper/payload-dumper-go.tar.gz -O -L https://github.com/ssut/payload-dumper-go/releases/download/1.2.2/payload-dumper-go_1.2.2_linux_amd64.tar.gz && \
+      tar xf /tmp/payloadDumper/payload-dumper-go.tar.gz -C /tmp/payloadDumper && \
+      chmod a+rx /tmp/payloadDumper/payload-dumper-go && \
+      mv /tmp/payloadDumper/payload-dumper-go /usr/bin/payload-dumper-go && \
+      rm -r /tmp/payloadDumper
